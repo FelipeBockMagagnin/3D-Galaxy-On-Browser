@@ -171,7 +171,7 @@ function generateUranus() {
 }
 
 function generateNeptune() {
-  var geometry = new THREE.SphereGeometry(1.3, 64, 64)
+  var geometry = new THREE.SphereGeometry(0.3, 64, 64)
   var material = new THREE.MeshBasicMaterial()
   material.map = THREE.ImageUtils.loadTexture('images/neptune/neptunemap.jpg')
 

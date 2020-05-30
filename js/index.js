@@ -1,5 +1,3 @@
-
-
 var scene = new THREE.Scene();
 var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 var renderer = new THREE.WebGLRenderer();
@@ -9,6 +7,23 @@ document.body.appendChild(renderer.domElement);
 camera.position.z = 40;
 
 var planets = generatePlanets();
+
+scene.add(new THREE.Mesh(
+  new THREE.SphereGeometry(100, 64, 64),
+  new THREE.MeshBasicMaterial({
+    map: THREE.ImageUtils.loadTexture('images/galaxy_starfield.png'),
+    side: THREE.BackSide
+  })
+));
+
+window.addEventListener("wheel", event => {
+  if (event.deltaY > 0) {
+    camera.position.z += 1
+  }
+  else {
+    camera.position.z -= 1
+  }
+})
 
 planets.forEach(element => {
   scene.add(element.object);
@@ -26,7 +41,7 @@ function animate() {
 }
 
 function rotate(planetObj) {
-  var px = planetObj.radius * Math.cos(planetObj.angle); // <-- that's the maths you need
+  var px = planetObj.radius * Math.cos(planetObj.angle);
   var py = planetObj.radius * Math.sin(planetObj.angle);
 
   planetObj.angle = (planetObj.angle + Math.PI / 360) % (Math.PI * 2) + planetObj.translationSpeed;
