@@ -16,7 +16,7 @@ function generatePlanets(){
   planets.push(generateEarth())
   planets.push(generateMars())
   planets.push(generateJupiter())
-  planets.push(generateEarth())
+  planets.push(generateSaturn())
 
   return planets;
 }
@@ -89,7 +89,7 @@ function generateEarth() {
 
   return {
     name: 'Earth',
-    radius: 10,
+    radius: 9,
     rotationSpeed: .02,
     translationSpeed: -0.005,
     object: planet,
@@ -108,7 +108,7 @@ function generateMars() {
 
   return {
     name: 'Mars',
-    radius: 15,
+    radius: 12,
     rotationSpeed: .01,
     translationSpeed: -0.007,
     object: planet,
@@ -124,10 +124,27 @@ function generateJupiter() {
   let planet = new THREE.Mesh(geometry, material);
 
   return {
-    name: 'Earth',
-    radius: 22,
+    name: 'Jupiter',
+    radius: 16,
     rotationSpeed: .008,
     translationSpeed: -0.008,
+    object: planet,
+    angle: Math.random(0, Math.PI * 2)
+  }
+}
+
+function generateSaturn() {
+  var geometry = new THREE.SphereGeometry(2, 64, 64)
+  var material = new THREE.MeshBasicMaterial()
+  material.map = THREE.ImageUtils.loadTexture('images/saturn/saturnmap.jpg')
+
+  let planet = new THREE.Mesh(geometry, material);
+
+  return {
+    name: 'Saturn',
+    radius: 22,
+    rotationSpeed: .02,
+    translationSpeed: -0.0085,
     object: planet,
     angle: Math.random(0, Math.PI * 2)
   }
