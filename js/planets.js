@@ -17,6 +17,9 @@ function generatePlanets(){
   planets.push(generateMars())
   planets.push(generateJupiter())
   planets.push(generateSaturn())
+  planets.push(generateUranus())
+  planets.push(generateNeptune())
+  planets.push(generatePluto())
 
   return planets;
 }
@@ -144,7 +147,58 @@ function generateSaturn() {
     name: 'Saturn',
     radius: 22,
     rotationSpeed: .02,
+    translationSpeed: -0.0084,
+    object: planet,
+    angle: Math.random(0, Math.PI * 2)
+  }
+}
+
+function generateUranus() {
+  var geometry = new THREE.SphereGeometry(1.3, 64, 64)
+  var material = new THREE.MeshBasicMaterial()
+  material.map = THREE.ImageUtils.loadTexture('images/uranus/uranusmap.jpg')
+
+  let planet = new THREE.Mesh(geometry, material);
+
+  return {
+    name: 'Uranus',
+    radius: 26,
+    rotationSpeed: .04,
     translationSpeed: -0.0085,
+    object: planet,
+    angle: Math.random(0, Math.PI * 2)
+  }
+}
+
+function generateNeptune() {
+  var geometry = new THREE.SphereGeometry(1.3, 64, 64)
+  var material = new THREE.MeshBasicMaterial()
+  material.map = THREE.ImageUtils.loadTexture('images/neptune/neptunemap.jpg')
+
+  let planet = new THREE.Mesh(geometry, material);
+
+  return {
+    name: 'Neptune',
+    radius: 30,
+    rotationSpeed: .04,
+    translationSpeed: -0.0086,
+    object: planet,
+    angle: Math.random(0, Math.PI * 2)
+  }
+}
+
+function generatePluto() {
+  var geometry = new THREE.SphereGeometry(1.3, 64, 64)
+  var material = new THREE.MeshBasicMaterial()
+  material.map = THREE.ImageUtils.loadTexture('images/pluto/plutomap1k.jpg')
+
+  let planet = new THREE.Mesh(geometry, material);
+
+  return {
+    name: 'Pluto',
+    radius: 36,
+    rotationSpeed: .04,
+    translationSpeed: -0.0087,
     object: planet,
     angle: Math.random(0, Math.PI * 2)
   }
