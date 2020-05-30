@@ -19,7 +19,6 @@ venus.position.x = 4;
 scene.add(venus);
 
 var earth = generateEarth();
-earth.position.x = 6;
 scene.add(earth);
 
 animate();
@@ -36,9 +35,12 @@ function animate() {
   venus.rotation.x += 0.02;
   venus.rotation.y += 0.02;
 
-  earth.rotation.x += 0.03;
-  earth.rotation.y += 0.03;
+  //earth.rotation.x += 0.03;
+  //earth.rotation.y += 0.03;
   //camera.position.z += 0.003;
+  a = (a + Math.PI / 360) % (Math.PI * 2);
+  rotate(a);
+  //orbitBody(earth);
 }
 
 function generateMercury() {
@@ -77,3 +79,26 @@ function generateEarth() {
   return new THREE.Mesh(geometry, material)
 }
 
+
+var x = 100  // center
+var y = 50   // center
+var r = 50   // radius
+var a = 0    // angle (from 0 to Math.PI * 2)
+
+function rotate(a) {
+  
+  var px = x + r * Math.cos(a); // <-- that's the maths you need
+  var py = y + r * Math.sin(a);
+  console.log(px);
+  console.log(py);
+
+  earth.position.x = px / 20 - 5;
+  earth.position.y = py / 20 - 2;
+  
+}
+
+
+setInterval(function() {
+  a = (a + Math.PI / 360) % (Math.PI * 2);
+  rotate(a);
+}, 5);
